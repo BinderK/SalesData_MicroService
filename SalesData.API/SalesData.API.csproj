@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SalesData.BL\SalesData.BL.csproj" />
+    <ProjectReference Include="..\SalesData.DATA\SalesData.DATA.csproj" />
   </ItemGroup>
 
 
