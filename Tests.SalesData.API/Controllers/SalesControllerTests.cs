@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 using SalesData.API.Controllers;
 using SalesData.API.DTOs;
 using SalesData.BL.DomainModels;
 using SalesData.DATA;
+using SalesData.DATA.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -183,6 +185,5 @@ namespace Tests.SalesData.API.Controllers
 
             CollectionAssert.AreEqual(salesDto, expectedSales);
         }
-
     }
 }

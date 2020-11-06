@@ -6,7 +6,7 @@ namespace SalesData.DATA
 {
     public class ApplicationDbContext : DbContext
     {
-        DbSet<Sale> Sales { get; set; }
+        public virtual DbSet<Sale> Sales { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
