@@ -1,21 +1,17 @@
 ﻿using Newtonsoft.Json;
 using SalesData.BL.DomainModels;
+using System;
 
 namespace SalesData.API.DTOs
 {
     public class SaleDto
     {
-        [JsonConstructor]
-        public SaleDto(int id, ArticleNumberDto articleNumber, double salesPrice)
+        public SaleDto(int id, ArticleNumberDto articleNumber, double salesPrice, DateTime saleDate)
         {
             Id = id;
             ArticleNumber = articleNumber;
             SalesPrice = salesPrice;
-        }
-
-        public SaleDto(Sale sale) 
-            : this(sale.Id, new ArticleNumberDto(sale.ArticleNumber.Value), sale.SalesPrice)
-        {
+            SaleDate = saleDate;
         }
 
         public int Id { get; }
@@ -23,5 +19,18 @@ namespace SalesData.API.DTOs
         public ArticleNumberDto ArticleNumber { get; }
 
         public double SalesPrice { get; }
+
+        public DateTime SaleDate { get; }
+
+        public override bool Equals(object other)
+        {
+            return GetHashCode() == other.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            return Id 
+                + ArticleNumber.GetHashCode();
+        }
     }
 }

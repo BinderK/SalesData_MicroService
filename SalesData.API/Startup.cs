@@ -1,9 +1,11 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SalesData.API.Middleware;
 using SalesData.DATA;
 
 namespace SalesData.API
@@ -17,11 +19,12 @@ namespace SalesData.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("ServiceData_InMemory_DB"));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers()
                     .AddNewtonsoftJson();
@@ -29,13 +32,14 @@ namespace SalesData.API
             services.AddSwaggerGen();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
 
             app.UseHttpsRedirection();
 
@@ -48,7 +52,7 @@ namespace SalesData.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SalesData.API_V1");
-            });
+            });            
 
             app.UseEndpoints(endpoints =>
             {

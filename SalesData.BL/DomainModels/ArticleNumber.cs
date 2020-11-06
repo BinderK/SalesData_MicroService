@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SalesData.BL.Exceptions;
+using System;
 using System.Text.RegularExpressions;
 
 namespace SalesData.BL.DomainModels
@@ -7,9 +8,9 @@ namespace SalesData.BL.DomainModels
     {
         private const int MAXIMUM_LENGTH = 32;
 
-        private ArticleNumber(string articleNumber)
+        private ArticleNumber(string value)
         {
-            Value = articleNumber;
+            Value = value;
         }
 
         public string Value { get; }
@@ -18,12 +19,12 @@ namespace SalesData.BL.DomainModels
         {
             if (!IsAlphaNumeric(articleNumber))
             {
-                throw new Exception("Article number must only consist of letters and numbers.");
+                throw new CreationException("Article number must only consist of letters and numbers.");
             }
 
             if (ExceedsMaximumLength(articleNumber))
             {
-                throw new Exception($"Article number exceeds maximum length of {MAXIMUM_LENGTH}");
+                throw new CreationException($"Article number exceeds maximum length of {MAXIMUM_LENGTH}");
             }
 
             return new ArticleNumber(articleNumber);
