@@ -21,7 +21,8 @@ namespace SalesData.API.DTOs
 
         public override int GetHashCode()
         {
-            return SaleDate.GetHashCode();
+            return SaleDate.GetHashCode()
+                + SalesNumber.GetHashCode();
         }
     }
 }

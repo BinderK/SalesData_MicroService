@@ -37,7 +37,7 @@ namespace SalesData.DATA.Migrations.MsSql
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sale");
+                    b.ToTable("Sales");
                 });
 #pragma warning restore 612, 618
         }

@@ -17,8 +17,4 @@
     <ProjectReference Include="..\SalesData.BL\SalesData.BL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\MsSql\" />
-  </ItemGroup>
-
 </Project>

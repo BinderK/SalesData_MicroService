@@ -1,4 +1,6 @@
-﻿namespace SalesData.API.DTOs
+﻿using System;
+
+namespace SalesData.API.DTOs
 {
     public class RevenuePerArticleDto
     {
@@ -22,7 +24,9 @@
 
         public override int GetHashCode()
         {
-            return ArticleNumber.GetHashCode();
+            return ArticleNumber.GetHashCode() 
+                + SalesNumber.GetHashCode()
+                + Math.Round(Revenue, 2).GetHashCode();
         }
     }
 }

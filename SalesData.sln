@@ -13,7 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C5830895
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.SalesData.API", "Tests.SalesData.API\Tests.SalesData.API.csproj", "{4E586D7F-0271-4AA7-ADF5-54BA703B89C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.SalesData.DATA", "Tests.SalesData.DATA\Tests.SalesData.DATA.csproj", "{EC9F442F-D2B4-4165-AFAB-0C873FCFF4C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.SalesData.DATA", "Tests.SalesData.DATA\Tests.SalesData.DATA.csproj", "{EC9F442F-D2B4-4165-AFAB-0C873FCFF4C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{F395E95B-A51C-4797-8BB5-0F4059DDA107}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\SalesDb.ldf = Resources\SalesDb.ldf
+		Resources\SalesDb.mdf = Resources\SalesDb.mdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

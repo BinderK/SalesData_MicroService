@@ -136,14 +136,14 @@ namespace SalesData.API.Controllers
         public IActionResult GetRevenuePerDay()
         {
             var sales = _unitOfWork.Sales.GetAll();
-            var salesPerDayDtos = sales
+            var revenuePerDayDtos = sales
                 .GroupBy(s => s.SaleDate)
                 .Select(g => new RevenuePerDayDto(
                     g.Key,
                     g.Count(),
                     g.Sum(s => s.SalesPrice)));
 
-            return new OkObjectResult(salesPerDayDtos);
+            return new OkObjectResult(revenuePerDayDtos);
         }
 
         /// <summary>
@@ -154,14 +154,14 @@ namespace SalesData.API.Controllers
         public IActionResult GetRevenuePerArticle()
         {
             var sales = _unitOfWork.Sales.GetAll();
-            var salesPerDayDtos = sales
+            var revenuePerArticleDtos = sales
                 .GroupBy(s => s.ArticleNumber)
                 .Select(g => new RevenuePerArticleDto(
                     new ArticleNumberDto(g.Key.ToString()),
                     g.Count(),
                     g.Sum(s => s.SalesPrice)));
 
-            return new OkObjectResult(salesPerDayDtos);
+            return new OkObjectResult(revenuePerArticleDtos);
         }
 
         private NotFoundObjectResult CreateSaleNotFoundByIdResult(int id) => new NotFoundObjectResult($"Sale with id {id} not found");
