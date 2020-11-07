@@ -33,7 +33,7 @@ namespace SalesData.DATA.Repositories
 
         public void Remove(TEntity entity)
         {
-            var result = Context.Set<TEntity>().Remove(entity);
+            Context.Set<TEntity>().Remove(entity);
         }
     }
 }
