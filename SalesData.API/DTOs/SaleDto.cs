@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SalesData.BL.DomainModels;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace SalesData.API.DTOs
 {
@@ -16,8 +17,10 @@ namespace SalesData.API.DTOs
 
         public int Id { get; }
 
+        [JsonProperty(Required = Required.Always)]
         public ArticleNumberDto ArticleNumber { get; }
 
+        [JsonProperty(Required = Required.Always)]
         public double SalesPrice { get; }
 
         public DateTime SaleDate { get; }

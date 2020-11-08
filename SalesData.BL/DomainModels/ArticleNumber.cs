@@ -6,7 +6,8 @@ namespace SalesData.BL.DomainModels
 {
     public class ArticleNumber
     {
-        private const int MAXIMUM_LENGTH = 32;
+        public const int MAXIMUM_LENGTH = 32;
+        public const string ALPHANUMERIC_PATTERN = "^[a-zA-Z0-9]*$";
 
         private ArticleNumber(string value)
         {
@@ -52,8 +53,7 @@ namespace SalesData.BL.DomainModels
 
         private static bool IsAlphaNumeric(string value)
         {
-            string pattern = "^[a-zA-Z0-9]*$";
-            return Regex.IsMatch(value, pattern);
+            return Regex.IsMatch(value, ALPHANUMERIC_PATTERN);
         }
 
         private static bool ExceedsMaximumLength(string value)
