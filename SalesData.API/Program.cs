@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using SalesData.DATA;
+using System;
+using System.Linq;
 
 namespace SalesData.API
 {
@@ -13,7 +12,9 @@ namespace SalesData.API
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            UpdateDatabase(host.Services);
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -22,5 +23,28 @@ namespace SalesData.API
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        public static void UpdateDatabase(IServiceProvider serviceProvider)
+        {
+            try
+            {
+                using var services = serviceProvider.CreateScope();
+                using var context = services.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+                if (context is InMemoryDbContext)
+                {
+                    return;
+                }
+
+                if (context.Database.GetPendingMigrations().Any())
+                {
+                    context.Database.Migrate();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

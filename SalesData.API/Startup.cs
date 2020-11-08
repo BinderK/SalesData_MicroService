@@ -21,8 +21,8 @@ namespace SalesData.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ApplicationDbContext, InMemoryDbContext>(opt => opt.UseInMemoryDatabase("SalesData_InMemory_DB"));
-            services.AddDbContext<ApplicationDbContext, MsSqlDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultSql")));
+            services.AddDbContext<ApplicationDbContext, InMemoryDbContext>(opt => opt.UseInMemoryDatabase("SalesData_InMemory_DB"));
+            //services.AddDbContext<ApplicationDbContext, MsSqlDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultSql")));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
